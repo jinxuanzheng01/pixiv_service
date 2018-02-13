@@ -25,13 +25,11 @@ class PixivController extends Controller {
           this.ctx.throw(401,'selectedImgData Error: JSON.parse');
       }
 
-      that.ctx.body = result;
-
-      return {
+      that.ctx.body = {
           code: 0,
           data: result,
           msg: '成功'
-      }
+      };
   }
 }
 
