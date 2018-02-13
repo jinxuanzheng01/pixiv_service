@@ -22,10 +22,16 @@ class PixivController extends Controller {
       try {
           result = JSON.parse(JSON.stringify(result));
       }catch (err){
-          throw 'selectedImgData Error: JSON.parse';
+          this.ctx.throw(401,'selectedImgData Error: JSON.parse');
       }
 
       that.ctx.body = result;
+
+      return {
+          code: 0,
+          data: result,
+          msg: '成功'
+      }
   }
 }
 
