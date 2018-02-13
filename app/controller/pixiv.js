@@ -6,14 +6,15 @@ class PixivController extends Controller {
 
   async selectedImgData(){
       let that = this;
-
       let {page,pageSize} = this.ctx.query;
 
-      if (!pageSize){pageSize = 50}
-      page = parseInt(page);
+      let params = {
+          page: page ? parseInt(page) : 0,
+          pageSize: pageSize ? parseInt(pageSize) : 50
+      };
 
       // 查询语句
-      let sql = `SELECT * FROM pixivimg LIMIT ${page * 50},${(page + 1) * 50}`;
+      let sql = `SELECT * FROM pixivimg LIMIT ${params.page * params.pageSize},${(params.page + 1) * params.pageSize}`;
 
       // 返回结果
       let result = await that.app.mysql.query(sql);
