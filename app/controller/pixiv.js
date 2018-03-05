@@ -4,20 +4,27 @@ const Controller = require('egg').Controller;
 class PixivController extends Controller {
   async index() {}
 
-  async selectedImgData(){
+  async selectedImg(){
       let that = this;
-      let {page,pageSize} = this.ctx.query;
 
-      let params = {
-          page: page ? parseInt(page) : 0,
-          pageSize: pageSize ? parseInt(pageSize) : 50
+      const createRule = {
+          page : {type: 'string',required:false},
+          pageSize : {type: 'string',required:false},
       };
 
-      // 查询语句
-      let sql = `SELECT * FROM pixivimg LIMIT ${params.page * params.pageSize},${(params.page + 1) * params.pageSize}`;
+      that.ctx.validate(createRule,that.ctx.query);
+
+      let {page,pageSize} = this.ctx.query;
+
+      // 设置默认值&格式转化
+      page =  page ? parseInt(page) : 0;
+      pageSize =  pageSize ? parseInt(pageSize) : 10;
 
       // 返回结果
-      let result = await that.app.mysql.query(sql);
+      let result = await that.app.mysql.select('pixivimg',{
+          offset: page * pageSize,
+          limit: (page + 1) * pageSize
+      });
 
       try {
           result = JSON.parse(JSON.stringify(result));
@@ -32,5 +39,7 @@ class PixivController extends Controller {
       };
   }
 }
+
+
 
 module.exports = PixivController;

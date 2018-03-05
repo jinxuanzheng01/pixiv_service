@@ -13,15 +13,15 @@ module.exports = appInfo => {
       // 单数据库信息配置
       client: {
           // host
-          host: 'rm-uf683mwfb51846y7o3o.mysql.rds.aliyuncs.com',
+          host: 'rm-m5e406wz8143a82oz.mysql.rds.aliyuncs.com',
           // 端口号
           port: '3306',
           // 用户名
-          user: 'root',
+          user: 'sharedaka_dev',
           // 密码
-          password: 'Jin2863158',
+          password: 'Sharedaka8520',
           // 数据库名
-          database: 'pixiv',
+          database: 'db_sharedaka_20170902',
       },
       // 是否加载到 app 上，默认开启
       app: true,

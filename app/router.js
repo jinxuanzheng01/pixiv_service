@@ -7,5 +7,5 @@ module.exports = app => {
     const { router, controller } = app;
     router.get('/', controller.home.index);
     router.get('/pixiv', controller.pixiv.index);
-    router.get('/pixiv/imgData', controller.pixiv.selectedImgData);
+    router.get('/pixiv/selectedImg', controller.pixiv.selectedImg);
 };
