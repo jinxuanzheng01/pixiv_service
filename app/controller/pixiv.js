@@ -20,8 +20,9 @@ class PixivController extends Controller {
       page =  page ? parseInt(page) : 0;
       pageSize =  pageSize ? parseInt(pageSize) : 10;
 
+      console.log('???/');
       // 返回结果
-      let result = await that.app.mysql.select('pixivimg',{
+      let result = await that.app.mysql.select('jin_pixivimg',{
           offset: page * pageSize,
           limit: (page + 1) * pageSize
       });
